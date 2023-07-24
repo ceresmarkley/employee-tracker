@@ -43,26 +43,27 @@ const userPrompt = () => {
         } else if (choices === 'View A Department Budget') {
             depBudget();
         } else if (choices === 'Add Department') {
-            depBudget();
+            addDepartment();
         } else if (choices === 'Add Role') {
-            depBudget();
+            addRole();
         } else if (choices === 'Add Employee') {
-            depBudget();
+            addEmployee();
         } else if (choices === 'Update Employee Role') {
-            depBudget();
+            updateEmployee();
         } else if (choices === 'Update Employee Manager') {
-            depBudget();
+            updateEmpManager();
         } else if (choices === 'Delete Department') {
-            depBudget();
+            delDepartment();
         } else if (choices === 'Delete Role') {
-            depBudget();
+            delRole();
         } else if (choices === 'Delete Employee') {
-            depBudget();
+            delEmployee();
         } else if (choices === 'Exit') {
-            depBudget();
+            console.log("Goodbye User! Exiting Program!")
+            dbconnection.end();
         }
-    })
-}
+    });
+};
 
 module.exports = {
     userPrompt,
