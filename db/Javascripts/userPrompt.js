@@ -1,4 +1,4 @@
-const { runQuery, dbconnection } = require('./db');
+const { dbconnection, runQuery } = require('./db');
 const inquirer = require('inquirer');
 
 const userPrompt = () => {
@@ -26,4 +26,8 @@ const userPrompt = () => {
             ]
         }
     ])
+}
+
+module.exports = {
+    userPrompt,
 }
