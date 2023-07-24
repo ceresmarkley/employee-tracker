@@ -6,7 +6,7 @@ USE employee_db;
 CREATE TABLE departments(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL
-)
+);
 
 CREATE TABLE roles(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,14 +14,14 @@ CREATE TABLE roles(
     salary DECIMAL(10,2) NOT NULL,
     departments_id INT,
     FOREIGN KEY(departments_id) REFERENCES departments(id) ON DELETE SET NULL
-)
+);
 
 CREATE TABLE employees(
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
-    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
     role_id INT,
     FOREIGN KEY(role_id) REFERENCES roles(id),
     manager_id INT NULL,
     FOREIGN KEY(manager_id) REFERENCES employees(id)
-)
+);
