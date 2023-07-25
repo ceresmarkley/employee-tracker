@@ -1,4 +1,4 @@
-const { dbconnection, runQuery } = require('./db');
+const { dbconnection, runQuery } = require('../config/db');
 const inquirer = require('inquirer');
 
 const userPrompt = () => {
