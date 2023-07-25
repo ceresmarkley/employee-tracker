@@ -67,6 +67,22 @@ const userPrompt = () => {
     });
 };
 
+const showDepartments = async () => {
+    const departments = await runQuery('SELECT * FROM departments');
+    console.table(departments);
+    userPrompt();
+}
+
+const showRoles = async () => {
+    const roles = await runQuery(`
+    SELECT 
+        roles.id,roles.title,roles.salary,departments.name AS department
+    FROM roles
+    INNER JOIN departments on roles.departments_id = departments.id;`);
+    console.table(roles);
+    userPrompt();
+}
+
 module.exports = {
     userPrompt,
 }
