@@ -5,10 +5,10 @@ dotenv.config();
 // Connect to database
 const dbconnection = mysql.createConnection(
     {
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
+      host: 'localhost',
+      user: 'root',
       password: process.env.DB_PASS,
-      database: process.env.DB_NAME
+      database: 'employee_db'
     });
   
   const runQuery = (sql, values) => {
