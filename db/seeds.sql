@@ -11,5 +11,5 @@ VALUES ("CEO Founder", 999999.00, 1), ("Ops Manager", 90000.00, 1), ("Shift Mana
 
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES ("Kai", "Chen", 1, NULL),
-("Daniel", "Chen", 3, 1);
+VALUES ("Kai", "C", 1, NULL),
+("Daniel", "C", 3, 1);

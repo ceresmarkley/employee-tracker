@@ -19,6 +19,7 @@ const userPrompt = () => {
                 'Add Department',
                 'Add Role',
                 'Add Employee',
+                'Update Employee Name',
                 'Update Employee Role',
                 'Update Employee Manager',
                 'Delete Department',
@@ -50,6 +51,8 @@ const userPrompt = () => {
                 addRole();
             } else if (choices === 'Add Employee') {
                 addEmployee();
+            } else if (choices === 'Update Employee Name') {
+                updateEmpName();
             } else if (choices === 'Update Employee Role') {
                 updateEmployee();
             } else if (choices === 'Update Employee Manager') {
@@ -85,18 +88,18 @@ const showRoles = async () => {
 
 const showEmployees = async () => {
     const employees = await runQuery(`
-    SELECT
-    employees_id,
-    employee_firstname,
-    employee_lastname,
-    roles.title AS title,
-    departments.name AS department,
-    roles.salary AS salary,
-    CONCAT(manager.first_name, ' ', manager.last_name) AS \`manager(first-last name)\`
-    FROM employees
-    LEFT JOIN roles on employees.role_id = roles.id
-    LEFT JOIN departments on roles.departments_id = departments.id
-    LEFT JOIN employees manager on employees.manager_id = manager.id`);
+    SELECT 
+        employees.id,
+        employees.first_name,
+        employees.last_name,
+        roles.title AS title,
+        departments.name AS department,
+        roles.salary,  
+        CONCAT(manager.first_name, ' ', manager.last_name) AS \`manager\` 
+    FROM employees 
+    LEFT JOIN roles on employees.role_id = roles.id 
+    LEFT JOIN departments ON roles.departments_id = departments.id 
+    LEFT JOIN employees manager on employees.manager_id= manager.id;`);
     console.table(employees);
     userPrompt();
 };
@@ -200,13 +203,84 @@ const updateEmployee = async () => {
             name: 'role_id',
             message: 'Select the new role for the employee:',
             choices: roleChoices
-        }
+        },
     ]);
 
     await runQuery('UPDATE employees SET role_id = ? WHERE id = ?', [updateEmployee.role_id, updateEmployee.employee_id]);
-    console.log('Employee role updated successfully!');
+    const role_title = roles.find(role => role.id === updateEmployee.role_id).title;
+    console.log(`Employee role ${role_title} updated successfully!`);
     userPrompt();
-}
+};
+
+
+const updateEmpName = async () => {
+    const employees = await allEmployees();
+    const employeeChoices = employees.map(employee => ({
+        name: employee.employee_name,
+        value: employee.id,
+        last_name: employee.last_name,
+        first_name: employee.first_name
+    }));
+
+    const updateName = async () => {
+        const { employee_id } = await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'employee_id',
+                message: 'Select the employee you want to update:',
+                choices: employeeChoices
+            }
+        ]);
+        
+        let updateNameChoice;
+        try {
+            updateNameChoice = await inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'update_name',
+                    message: `Select which name you want to update for employee:`,
+                    choices: ['First', 'Last']
+                },
+            ]);
+        } catch (error) {
+            console.log(error);
+        }
+
+        if (updateNameChoice === 'First') {
+            // prompt the user to enter a new first name
+            const newFirstName = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'new_first_name',
+                    message: 'Enter new first name.',
+                    validate: validateInput,
+                }
+            ]);
+
+            await runQuery('UPDATE employees SET first_name = ? WHERE id = ?', [newFirstName.new_first_name, employee_id]);
+            console.log(`Employee first name updated successfully!`);
+            userPrompt();
+        } else {
+            // prompt the user to enter a new last name
+            const newLastName = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'new_last_name',
+                    message: 'Enter new last name.',
+                    validate: validateInput,
+                }
+            ]);
+
+            await runQuery('UPDATE employees SET last_name = ? WHERE id = ?', [newLastName.new_last_name, employee_id]);
+            console.log(`Employee last name updated successfully!`);
+            userPrompt();
+        }
+    };
+
+    const updatedEmployee = await updateName();
+
+    return updatedEmployee;
+};
 
 const addEmployee = async () => {
     const roles = await allRoles();
@@ -474,4 +548,5 @@ module.exports = {
     delDepartment,
     delRole,
     delEmployee,
+    updateEmpName,
 };
