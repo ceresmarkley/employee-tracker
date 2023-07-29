@@ -1,7 +1,7 @@
-const { runQuery, dbconnection } = require('../config/connection');
+const { runQuery, dbconnection } = require('../../config/connection');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
-const { validateInput, validateNumber } = require('./validate');
+const { validateInput, validateNumber } = require('../validate');
 
 const userPrompt = () => {
     inquirer.prompt([
