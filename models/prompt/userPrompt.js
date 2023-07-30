@@ -246,7 +246,7 @@ const updateEmpName = async () => {
             console.log(error);
         }
 
-        if (updateNameChoice === 'First') {
+        if (updateNameChoice.update_name === 'First') {
             // prompt the user to enter a new first name
             const newFirstName = await inquirer.prompt([
                 {
