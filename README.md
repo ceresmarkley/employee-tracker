@@ -1,5 +1,4 @@
 # employee-tracker
-an application to allow a user to add/update emplyee information using mysql databases
 
 ## Description 
 
@@ -43,9 +42,19 @@ THEN I am prompted to select an employee to update and their new role and this i
 ```
 ## Technology Used   
 * [![Node.js](https://img.shields.io/badge/Node.js®-v20.4.0-blue?logo=node.js)](https://nodejs.org/en)    
-* [![npm](https://img.shields.io/badge/npm-v9.8.0-blue?logo=npm)](https://docs.npmjs.com/cli/v9/)    
-  * [![Express Package](https://img.shields.io/badge/Express-4.18.2-green?logo=express)](https://expressjs.com/) 
+* [![npm](https://img.shields.io/badge/npm-v9.8.0-blue?logo=npm)](https://docs.npmjs.com/cli/v9/)     
+  * [![DotEnv Package](https://img.shields.io/badge/DotEnv-16.3.1-green?logo=dotenv)](https://www.npmjs.com/package/dotenv)    
+  * [![Inquirer Package](https://img.shields.io/badge/Inquirer-8.2.5-green?logo=npm)](https://www.npmjs.com/package/inquirer)    
+  * [![MySQL2 Package](https://img.shields.io/badge/MySQL2-3.5.2-green?logo=mysql)](https://www.npmjs.com/package/mysql2)
+  * [![Console Table](https://img.shields.io/badge/console.table-0.10.0-green?logo=console.table)](https://www.npmjs.com/package/console.table) 
+
+
+ 
 ## Installation
+Before you start, make sure to created a .env file in the root directory as the example shown below:   
+     
+DB_PASS=Replace this with your own password to your "host"   
+   
 * Packages to support this application can be installed by using [*npm install*](https://docs.npmjs.com/cli/v9/commands/npm-install) commands.
 
 > **Note**: If you do not have a `package.json` in your directory already, enter command below to [*initiate*](https://docs.npmjs.com/cli/v9/commands/npm-init).
@@ -57,8 +66,18 @@ THEN I am prompted to select an employee to update and their new role and this i
 >then
 >
 >```bash
->npm install i
+>npm install i console.table dotenv inquirer@^8.2.4 mysql2
 >```
+>
+> Once you have installed these packages, open your terminal within the 'db' folder and type:
+>
+>```bash
+>mysql -u root -p
+>```
+>
+> followed with
+>
+> source schema.sql 
 
 [*back to top*](#table-of-contents)
 ## Usage
