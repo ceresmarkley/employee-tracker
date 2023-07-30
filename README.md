@@ -83,7 +83,7 @@ DB_PASS="password"
 >
 > after user may type quit then run the command
 >
-> >```bash
+> ```bash
 > npm start
 >```
 >
