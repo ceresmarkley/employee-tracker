@@ -1,4 +1,4 @@
-# employee-tracker
+# Employee Tracker
 
 ## Description 
 
@@ -77,17 +77,29 @@ DB_PASS=Replace this with your own password to your "host"
 >
 > followed with
 >
-> source schema.sql 
+> ```bash
+> source schema.sql
+> ```
+>
+> after user may type quit then run the command
+>
+> >```bash
+> npm start
+>```
 
 [*back to top*](#table-of-contents)
 ## Usage
+Demo Video   
+
+https://github.com/ceresmarkley/employee-tracker/assets/129554518/ab2e827d-ce8e-40d2-99ec-61d373f526d3
 
 
-[*back to top*](#table-of-contents)
 ## Sources 
-   
+
+Peer Support on javascript functions - https://github.com/CQlove/Employee-Tracker
+
 [*back to top*](#table-of-contents)
 
----
+--- 
 
 © 2023 Ceres Markley. All Rights Reserved.
