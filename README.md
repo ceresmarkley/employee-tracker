@@ -51,9 +51,9 @@ THEN I am prompted to select an employee to update and their new role and this i
 
  
 ## Installation
-Before you start, make sure to created a .env file in the root directory as the example shown below:   
+Before you start, make sure to create a .env file in the root directory and add the code below replacing "password" with your local SQL workbench password.  
      
-DB_PASS=Replace this with your own password to your "host"   
+DB_PASS="password"   
    
 * Packages to support this application can be installed by using [*npm install*](https://docs.npmjs.com/cli/v9/commands/npm-install) commands.
 
@@ -87,7 +87,7 @@ DB_PASS=Replace this with your own password to your "host"
 > npm start
 >```
 >
->    
+>Program will now be running, select Exit to quit! 
 
 [*back to top*](#table-of-contents)
 ## Usage
